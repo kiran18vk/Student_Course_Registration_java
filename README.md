@@ -1,119 +1,91 @@
-🎓 Student Course Registration System
+# Student Course Registration System
 
-📌 Overview
+A robust, Java-based desktop application for managing student registrations, course enrollments, and automated communication. This system provides a seamless interface for both administrators and students, backed by a MySQL database and a purely Java-based email notification system.
 
-The Student Course Registration System is a Java-based application that allows students to register for courses, view available courses, and manage enrollments. It also provides administrative functionalities for managing courses and student data.
+## 🚀 Key Features
 
-This project uses:
+### For Administrators
+*   **Student Management**: Add new students with detailed profiles (Name, Email, Roll Number).
+*   **Automatic Credentials**: The system generates a password and automatically emails it to the student upon registration.
+*   **Password Control**: Admins can reset student passwords, triggering an automated notification email.
 
-Java (Core + Swing for UI)
+### For Students
+*   **Secure Login**: Role-based access for students and administrators.
+*   **Course Selection**: Browse and enroll in available courses.
+*   **Self-Service**: Update account passwords and recover forgotten credentials via email.
 
-MySQL Database
+### System Features
+*   **Mail System**: Integrated JavaMail API for SMTP-based notifications (Gmail).
+*   **Database Persistence**: Uses JDBC for reliable data storage in a MySQL environment.
+*   **Responsive UI**: Developed with Java Swing for a consistent desktop experience.
 
-JDBC for database connectivity
+---
 
-🚀 Features
+## 🛠️ Technology Stack
 
-👨‍🎓 Student Module
-Student login
-View available courses
-Register for courses
-View enrolled courses
-🛠️ Admin Module
-Add / remove courses
-Manage student data
-View registrations
-📧 Additional Features
-Email notifications (via Java Mail API)
-Database connectivity using JDBC
-🗂️ Project Structure
-StudentCourseRegistration-kiran/
-│
-├── model/              # Data models (Student, Course)
-├── service/            # Business logic (CourseService, EmailService)
-├── ui/                 # User Interfaces (LoginUI, AdminUI, StudentUI)
-├── util/               # Database connection utility
-├── lib/                # External libraries (MySQL connector, Mail API)
-├── bin/                # Compiled class files
-│
-├── setup.sql           # Database setup script
-├── migrate.sql         # Migration script
+*   **Logic & UI**: Java (SE), Swing, AWT
+*   **Database**: MySQL
+*   **Communication**: JavaMail API (`javax.mail`)
+*   **Connectivity**: JDBC (MySQL Connector/J)
 
-⚙️ Technologies Used
-Java (JDK 8 or above)
-Swing (GUI)
-MySQL
-JDBC
-JavaMail API
-🧰 Setup Instructions
-1️⃣ Clone or Extract Project
-unzip StudentCourseRegistration.zip
-cd StudentCourseRegistration-kiran
-2️⃣ Setup Database
-Open MySQL
-Run the SQL scripts:
+---
+
+## 📋 Prerequisites
+
+Before running the application, ensure you have the following installed:
+1.  **Java Development Kit (JDK)**: Version 8 or higher.
+2.  **MySQL Server**: Running on `localhost:3306`.
+3.  **Libraries**: The following `.jar` files must be in your `lib/lib/` directory:
+    *   `mysql-connector-j-9.6.0.jar`
+    *   `javax.mail-1.6.2.jar`
+    *   `activation-1.1.1.jar`
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Database Configuration
+Run the provided SQL scripts to set up your database environment:
+```sql
+-- Execute this in your MySQL terminal or Workbench
 source setup.sql;
-source migrate.sql;
-3️⃣ Configure Database Connection
+```
 
-Edit the file:
+### 2. Email Configuration
+Update the sender credentials in `service/EmailService.java` to use your own Gmail account and App Password:
+```java
+private static final String SENDER_EMAIL = "your-email@gmail.com";
+private static final String SENDER_APP_PASSWORD = "your-app-password";
+```
 
-util/DBConnection.java
+### 3. Connection Settings
+Ensure `util/DBConnection.java` reflects your MySQL credentials:
+```java
+public static final String URL = "jdbc:mysql://localhost:3306/university";
+public static final String USER = "root";
+public static final String PASSWORD = "your_mysql_password";
+```
 
-Update:
+---
 
-String url = "jdbc:mysql://localhost:3306/your_database";
-String user = "root";
-String password = "your_password";
-4️⃣ Add Libraries
+## 🏃 How to Run
 
-Ensure these JAR files are included:
+The easiest way to launch the application on Windows is by using the provided batch file:
 
-mysql-connector-j
-javax.mail
-activation
+1.  Open your terminal in the project directory.
+2.  Run the command:
+    ```bash
+    run.bat
+    ```
+    *This script will automatically compile all Java files and launch the `LoginUI`.*
 
-(Already present in /lib folder)
+---
 
-5️⃣ Compile & Run
-Option 1: Using Command Line
-javac -cp ".;lib/*" ui/LoginUI.java
-java -cp ".;lib/*" ui.LoginUI
-Option 2: Use run.bat
+## 📁 Project Structure
 
-Simply double-click:
-
-run.bat
-🧪 Testing
-
-Test files included:
-
-TestStudent.java
-TestDB.java
-TestPrintStudents.java
-
-Run them individually to verify functionality.
-
-🔐 Default Credentials (if applicable)
-
-(Update this if you implemented login credentials)
-
-Admin:
-Username: admin
-Password: admin123
-📈 Future Enhancements
-Web-based version (Spring Boot / React)
-Mobile app integration
-Advanced analytics dashboard
-Role-based authentication (JWT)
-Cloud deployment
-🤝 Contribution
-
-Feel free to fork and improve this project:
-
-Add new features
-Improve UI/UX
-Optimize database queries
-📄 License
-
-This project is for educational purposes.
+*   `model/`: Data objects (Student, Course).
+*   `service/`: Business logic (Course management, Email service).
+*   `ui/`: Graphical User Interface components.
+*   `util/`: Database connection and utility classes.
+*   `lib/`: External dependencies.
+*   `setup.sql`: Database schema initialization.
